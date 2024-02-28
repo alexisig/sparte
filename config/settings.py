@@ -97,6 +97,7 @@ PROJECT_APPS = [
     "metabase.apps.MetabaseConfig",
     "brevo.apps.BrevoConfig",
     "documentation.apps.DocumentationConfig",
+    "admin_express.apps.AdminExpressConfig",
 ]
 
 
