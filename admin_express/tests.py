@@ -74,10 +74,17 @@ class TestManager:
         instance = AdminTerritory.objects.all().first()
         assert isinstance(instance, Departement)
 
-    def test_trasnform_into_communes(self, db_small_setup):
+    def test_trasnform_into_communes(self, db_setup):
         qs = AdminTerritory.objects.filter(category=AdminTerritory.CATEGORY.DEPARTEMENT)
-        assert qs.get_communes().count() == 2
-        assert list(Commune.objects.all()) == list(qs.communes())
+        comm_list = list(qs.get_communes())
+        assert len(comm_list) == 3
+        assert list(Commune.objects.all()) == comm_list
+        qs = Commune.objects.filter(official_id="10100")
+        assert list(qs) == list(qs.get_communes())
+        qs = Epci.objects.all()
+        assert list(qs.get_communes()) == list(Commune.objects.filter(official_id="10100"))
+        qs = AdminTerritory.objects.filter(official_id__in=["10100", "45678912300012"])  # commune and epci
+        assert list(qs.get_communes()) == list(Commune.objects.filter(official_id="10100"))
 
 
 @pytest.mark.django_db
