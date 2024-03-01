@@ -41,6 +41,9 @@ class AdminTerritory(models.Model):
     # then C should be listed as parent of A
     parents = models.ManyToManyField("self", blank=True, symmetrical=False, related_name="children")
 
+    class Meta:
+        unique_together = (("category", "official_id"),)
+
     def public_key(self) -> str:
         return f"{self.category}_{self.official_id}"
 
