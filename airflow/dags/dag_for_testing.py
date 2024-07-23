@@ -22,5 +22,4 @@ with DAG(
     unzip_ocsge_7z_to_shapefile_task = EmptyOperator(task_id="unzip_ocsge_7z_file")
     create_geopackage_from_ocsge_shapefile = EmptyOperator(task_id="repack_ocsge_shapefile_to_geopackage")
     add_additionnal_fields_to_geopackage_task = EmptyOperator(task_id="add_additionnal_fields_to_geopackage")
-    add_artficial_area_layer_to_geopackage = EmptyOperator(task_id="calculate_artficial_area")
     test_operator = PythonOperator(task_id="test_operator", python_callable=my_callable)
