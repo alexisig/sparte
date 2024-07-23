@@ -1,3 +1,4 @@
+import datetime
 import os
 
 from airflow.operators.empty import EmptyOperator
@@ -17,6 +18,7 @@ def my_callable(*args, **kwargs):
 with DAG(
     "test_dag",
     schedule_interval="@once",
+    start_date=datetime.datetime(2022, 1, 1),
 ) as dag:
     download_ocsge_7z_file_task = EmptyOperator(task_id="download_ocsge_7z_file")
     unzip_ocsge_7z_to_shapefile_task = EmptyOperator(task_id="unzip_ocsge_7z_file")
