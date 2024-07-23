@@ -166,3 +166,5 @@ staticroot/*
 public_data/static/SSCH*
 diff_bfc_*
 .idea
+
+airflow/logs/
