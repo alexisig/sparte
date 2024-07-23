@@ -15,7 +15,7 @@ def my_callable(*args, **kwargs):
 
 
 with DAG(
-    "dag_for_testing",
+    "test_dag",
     schedule_interval="@once",
 ) as dag:
     download_ocsge_7z_file_task = EmptyOperator(task_id="download_ocsge_7z_file")
